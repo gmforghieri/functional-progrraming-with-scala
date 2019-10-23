@@ -18,7 +18,11 @@ object Practice {
       * @param n amount of items to take.
       * @return the first n items of xs.
       */
-    def firstN(xs: List[Int], n: Int): List[Int] = ???
+    def firstN(xs: List[Int], n: Int): List[Int] = xs match {
+        case i :: tail if(n > 0) => i :: firstN(tail, n - 1)
+        case i :: tail if(n == 0) => Nil
+        case Nil => Nil
+    }
 
 
     /** Q6 (3p)
