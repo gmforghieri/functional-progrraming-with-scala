@@ -72,7 +72,14 @@ object PatternMatching {
       *
       * Hint: you can use if statements in pattern matching.
       */
-    def firstDivByX(xs: List[Int], n: Int): OptionalNum = ???
+    def firstDivByX(xs: List[Int], n: Int): OptionalNum = xs match {
+
+        case i :: tail if (i % n == 0) => Num(i)
+        case i :: tail => firstDivByX(tail, n)
+
+        // Return nothing if no number exists divisible by n
+        case Nil => Nothing()
+    }
 
     /** Q4 (2p)
       * Implement this function that returns a list of only the even numbers.
