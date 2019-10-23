@@ -88,5 +88,17 @@ object PatternMatching {
       * @param xs the list to process.
       * @return the list of all even numbers in xs.
       */
-    def onlyEvenNumbers(xs: List[OptionalNum]): List[Int] = ???
+    def onlyEvenNumbers(xs: List[OptionalNum]): List[Int] = xs match {
+        // If current head is nothing, return list of even numbers of tail
+        case Nothing() :: tail => onlyEvenNumbers(tail)
+
+        // If current head is even, return list of current head followed by list of even numbers of tail
+        case Num(x) :: tail if x % 2 == 0 => x :: onlyEvenNumbers(tail)
+
+        // If current head is odd, return list of even numbers of tail
+        case Num(x) :: tail => onlyEvenNumbers(tail)
+
+        // If list is empty, return empty list
+        case Nil => Nil
+    }
 }
