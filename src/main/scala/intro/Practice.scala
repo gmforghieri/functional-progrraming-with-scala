@@ -32,5 +32,18 @@ object Practice {
       * @param xs list to process.
       * @return the maximum value in the list.
       */
-    def maxValue(xs: List[Int]): Int = ???
+    def maxValue(xs: List[Int]): Int = {
+        {
+
+            def max(x: Int, y: Int): Int = {
+                if (x >= y) x else y
+            }
+
+            xs match {
+                case Nil => Int.MinValue
+                case x :: Nil => x
+                case x :: xs  => max(x, maxValue(xs))
+            }
+        }
+    }
 }
