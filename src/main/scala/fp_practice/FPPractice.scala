@@ -38,6 +38,12 @@ object FPPractice {
       * Read the documentation on the `Option` class to find out what you should return.
       * Hint: it is very similar to the `OptionalInt` you saw earlier.
       */
-    def headSumsTail(xs: List[List[Int]]): Option[Int] = ???
+    def headSumsTail(xs: List[List[Int]]): Option[Int] = xs match {
+        case Nil => None
+        case i :: Nil if i.head == (i.sum - i.head) => Some(i.length)
+        case i :: Nil if i.head != (i.sum - i.head) => None
+        case i :: tail if i.head == (i.sum - i.head) => Some(i.length)
+        case i :: tail if i.head != (i.sum - i.head) => headSumsTail(tail)
+    }
 
 }
