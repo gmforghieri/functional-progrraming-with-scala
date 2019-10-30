@@ -19,7 +19,10 @@ object Dataset {
       * @param input the list of commits to process.
       * @return the average amount of additions in the commits that have stats data.
       */
-    def avgAdditions(input: List[Commit]): Int = ???
+    def avgAdditions(input: List[Commit]): Int = {
+        val list = input.filter(_.stats.isDefined)
+        list.map(commit => commit.stats.get.additions).sum / list.length
+    }
 
     /** Q17 (8p)
       * Find the hour of day (in 24h notation, UTC time) during which the most javascript (.js) files are changed in commits.
