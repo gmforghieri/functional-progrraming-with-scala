@@ -41,7 +41,9 @@ object Dataset {
       * @param repo the repository name to consider.
       * @return the name and amount of commits for the top committer.
       */
-    def topCommitter(input: List[Commit], repo: String): (String, Int) = ???
+    def topCommitter(input: List[Commit], repo: String): (String, Int) = {
+        input.filter(_.url.contains(repo)).groupBy(_.commit.author.name).mapValues(_.size).maxBy(_._2)
+    }
 
     /** Q19 (9p)
       * For each repository, output the name and the amount of commits that were made to this repository in 2019 only.
