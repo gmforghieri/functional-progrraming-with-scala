@@ -83,5 +83,6 @@ object Dataset {
                 case _ => ""
             }
         }
+        input.flatMap(_.files.flatMap(_.filename)).map(getExtension(_)).groupBy(identity).mapValues(_.size).toList.sortBy(_._2).reverse.take(5)
     }
 }
