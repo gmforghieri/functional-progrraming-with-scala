@@ -1,5 +1,6 @@
 package dataset
-
+import java.text.SimpleDateFormat
+import java.util.SimpleTimeZone
 import dataset.util.Commit.Commit
 
 /**
@@ -12,6 +13,8 @@ import dataset.util.Commit.Commit
   * This part is worth 40 points.
   */
 object Dataset {
+    val format = new SimpleDateFormat("H")
+    format.setTimeZone(new SimpleTimeZone(SimpleTimeZone.UTC_TIME, "UTC"))
 
     /** Q16 (5p)
       * For the commits that are accompanied with stats data, compute the average of their additions.
@@ -31,7 +34,9 @@ object Dataset {
       * @param input list of commits to process.
       * @return the hour and the amount of files changed during this hour.
       */
-    def jsTime(input: List[Commit]): (Int, Int) = ???
+    def jsTime(input: List[Commit]): (Int, Int) = {
+
+    }
 
     /** Q18 (9p)
       * For a given repository, output the name and amount of commits for the person
