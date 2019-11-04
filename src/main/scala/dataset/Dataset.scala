@@ -66,6 +66,8 @@ object Dataset {
         def getRepo(s: String): String =  {
             s.split('/')(4).concat("/").concat(s.split('/')(5))
         }
+        input.filter(_.commit.committer.date.toString.contains("2019")).groupBy(_.url)
+          .mapValues(_.size).keySet.toList.map(getRepo(_)).groupBy(identity).mapValues(_.size)
     }
 
     /** Q20 (9p)
