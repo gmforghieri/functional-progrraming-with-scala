@@ -35,7 +35,10 @@ object Dataset {
       * @return the hour and the amount of files changed during this hour.
       */
     def jsTime(input: List[Commit]): (Int, Int) = {
-
+        input.map(commit => (format.format(commit.commit.committer.date).toInt,
+          commit.files.filter(commit => commit.filename.get.matches(".*\\.js$"))))
+          .map(commit => (commit._1, commit._2.size)).filter(commit => commit._2 != 0).groupBy(commit => commit._1)
+          .mapValues(_.map(commit => commit._2).sum).toList.maxBy(_._2)
     }
 
     /** Q18 (9p)
