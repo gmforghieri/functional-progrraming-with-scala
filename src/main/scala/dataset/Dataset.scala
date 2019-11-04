@@ -62,7 +62,11 @@ object Dataset {
       * Example output:
       * Map("KosDP1987/students" -> 1, "giahh263/HQWord" -> 2)
       */
-    def commitsPerRepo(input: List[Commit]): Map[String, Int] = ???
+    def commitsPerRepo(input: List[Commit]): Map[String, Int] = {
+        def getRepo(s: String): String =  {
+            s.split('/')(4).concat("/").concat(s.split('/')(5))
+        }
+    }
 
     /** Q20 (9p)
       * Derive the 5 file types that appear most frequent in the commit logs.
