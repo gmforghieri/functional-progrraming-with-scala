@@ -75,5 +75,13 @@ object Dataset {
       * @param input the list of commits to process.
       * @return 5 tuples containing the file extension and frequency of the most frequently appeared file types, ordered descendingly.
       */
-    def topFileFormats(input: List[Commit]): List[(String, Int)] = ???
+    def topFileFormats(input: List[Commit]): List[(String, Int)] = {
+        def getExtension(s: String): String = {
+            val pattern = """(.*)[.]([^.]*)""".r
+            s match {
+                case pattern(_, extension) => extension.substring(0)
+                case _ => ""
+            }
+        }
+    }
 }
