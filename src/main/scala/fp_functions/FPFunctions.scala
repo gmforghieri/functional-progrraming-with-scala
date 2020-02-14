@@ -18,7 +18,10 @@ object FPFunctions {
       * @tparam B result type of mapping function.
       * @return a list of all items in `xs` mapped with `f`.
       */
-    def map[A, B](xs: List[A], f: A => B): List[B] = ???
+    def map[A, B](xs: List[A], f: A => B): List[B] = xs match {
+        case i :: tail => f(i)::map(tail, f)
+        case Nil => Nil
+    }
 
     /** Q8 (5p)
       * Takes a function that returns a boolean and returns all elements that satisfy it.
