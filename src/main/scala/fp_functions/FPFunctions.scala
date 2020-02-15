@@ -58,7 +58,10 @@ object FPFunctions {
       * @tparam B the result type of the fold function.
       * @return the result of folding `xs` with `f`.
       */
-    def foldL[A, B](xs: List[A], f: (B, A) => B, init: B): B = ???
+    def foldL[A, B](xs: List[A], f: (B, A) => B, init: B): B = xs match {
+        case i :: Nil => f(init, i)
+        case i :: tail  => foldL[A,B](tail, f, f(init, i))
+    }
 
     /** Q11 (5p)
       * Reuse `foldL` to define `foldR`.
