@@ -86,5 +86,10 @@ object FPFunctions {
       * @tparam B the type of the items in `ys`.
       * @return a list of tuples of items in `xs` and `ys`.
       */
-    def zip[A, B](xs: List[A], ys: List[B]): List[(A, B)] = ???
+    def zip[A, B](xs: List[A], ys: List[B]): List[(A, B)] = (xs, ys) match {
+        // Assuming same length of xs and ys
+        case (Nil,_) => Nil
+        case (_,Nil) => Nil
+        case(i :: tailX, j :: tailY) => (i, j) :: zip(tailX, tailY)
+    }
 }
