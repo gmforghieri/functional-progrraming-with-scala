@@ -43,7 +43,11 @@ object FPFunctions {
       * @param xs the list to flatten.
       * @return one list containing all items in `xs`.
       */
-    def recFlat(xs: List[Any]): List[Any] = ???
+    def recFlat(xs: List[Any]): List[Any] = xs match {
+        case Nil => Nil
+        case (i:List[_]):: tail => recFlat(i) ::: recFlat(tail)
+        case i :: tail => i :: recFlat(tail)
+    }
 
     /** Q10 (5p)
       * Takes `f` of 2 arguments and an `init` value and combines the elements by applying `f` on the result of each previous application.
