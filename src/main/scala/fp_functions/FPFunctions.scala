@@ -74,7 +74,9 @@ object FPFunctions {
       * @tparam B the result type of the fold function.
       * @return the result of folding `xs` with `f`.
       */
-    def foldR[A, B](xs: List[A], f: (A, B) => B, init: B): B = ???
+    def foldR[A, B](xs: List[A], f: (A, B) => B, init: B): B = {
+        foldL(xs.reverse, (b: B, a: A) => f(a: A, b: B), init)
+    }
 
     /** Q12 (5p)
       * Returns a iterable collection formed by iterating over the corresponding items of `xs` and `ys`.
